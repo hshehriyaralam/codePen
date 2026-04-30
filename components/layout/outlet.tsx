@@ -4,10 +4,12 @@ import Header from "../common/header";
 import EditorComp from "../common/editor";
 import PreviewConsole from "../common/previewConsole";
 import {
-  ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import HTML  from '@/public/html-lates-removebg-preview.png'
+import CSS  from '@/public/CSS-logo-removebg-preview.png'
+import JavaScript  from '@/public/js-new-removebg-preview.png'
 
 const Outlet = () => {
   const [html, setHtml] = useState("");
@@ -51,9 +53,9 @@ const Outlet = () => {
   };
 
   const editors = [
-    ["HTML", html, setHtml],
-    ["CSS", css, setCss],
-    ["JavaScript", js, setJs],
+    ["HTML", html, setHtml, HTML],
+    ["CSS", css, setCss,  CSS,   ],
+    ["JavaScript", js, setJs,JavaScript ],
   ];
 
   useEffect(() => {
@@ -98,9 +100,6 @@ const Outlet = () => {
         consoleOutput={consoleOutput}
         />
         </ResizablePanel>
-      
-
-
         </ResizablePanelGroup>
     </section>
   );
