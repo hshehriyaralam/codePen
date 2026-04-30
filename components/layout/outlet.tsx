@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import Header from "../common/header";
-import Editor from "../common/editor";
+import EditorComp from "../common/editor";
 import PreviewConsole from "../common/previewConsole";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 const Outlet = () => {
   const [html, setHtml] = useState("");
@@ -26,18 +30,20 @@ const Outlet = () => {
           <script>
           const oldLog = console.log;
           console.log = function(...args){
+
+           oldLog.apply(console,args)
           window.parent.postMessage({
-          type : console,
+          type : "console",
           message : args.join(" ")
-          })
+          }, "*")
           }
           try{
             ${js}
           }catch(error){
           window.parent.postMessage({
-          type : console,
+          type : "console",
           message : error.toString()
-          })
+          }, "*")
           }
           </script>
           </html>`;
@@ -50,23 +56,52 @@ const Outlet = () => {
     ["JavaScript", js, setJs],
   ];
 
-  
+  useEffect(() => {
+    const handleMessage = (event:any) => {
+      if(event.data?.type === 'console'){
+        setConsoleOutput((prev:any) => (prev + "\n" + event.data?.message) )
+      }
+    }
+    window.addEventListener("message", handleMessage)
+    return () => window.removeEventListener("message", handleMessage)
+},[])
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       RunCode();
     }, 500);
+
+    return () =>  clearInterval(timer)
   }, [html, css, js]);
+
+
+
+
+
   return (
-    <section className="w-full min-h-screen bg-[#1e1e1e]  overflow-hidden ">
+    <section className="w-full min-h-screen bg-[#0f1117]  overflow-scroll scrollbar ">
       <Header />
-      <div className="grid grid-cols-1  gap-2  w-full ">
-        <Editor editors={editors} />
+      <ResizablePanelGroup
+      orientation="vertical"
+      className="lg:min-h-[580px]  min-h-[1000px]  w-full   ">
+        <ResizablePanel
+        defaultSize="50%">
+          <div>
+        <EditorComp editors={editors} />
+          </div>
+        </ResizablePanel>
+
+          <ResizablePanel
+        defaultSize="50%">
         <PreviewConsole 
         srcDoc={srcDoc}
         consoleOutput={consoleOutput}
         />
-      </div>
+        </ResizablePanel>
+      
+
+
+        </ResizablePanelGroup>
     </section>
   );
 };

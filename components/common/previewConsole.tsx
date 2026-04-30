@@ -7,14 +7,13 @@ import {
 
 const PreviewConsole = ({srcDoc, consoleOutput}:any) => {
   return (
-    <ResizablePanelGroup
-          orientation="vertical"
-          className="min-h-[400px] max-w-sm rounded-lg border  max-w-full   overflow-hidden"
-        >
-          {/* Preview div */}
+
+        <ResizablePanelGroup
+        className="min-h-full max-w-sm rounded-lg border  max-w-full   overflow-hidden"
+        orientation='vertical'>
           <ResizablePanel
             defaultSize="60%"
-            className="w-full h-[280px] bg-gray-100 overflow-hidden"
+            className="w-full min-h-[270px] bg-gray-100 overflow-hidden"
           >
             <div
               className="w-full font-mono text-rose-500  font-semibold  border-b
@@ -38,7 +37,7 @@ const PreviewConsole = ({srcDoc, consoleOutput}:any) => {
           {/* Console Div */}
           <ResizablePanel
             defaultSize="40%"
-            className="w-full h-[350px] bg-black "
+            className="w-full min-h-[300px] bg-black "
           >
             <div
               className="w-full font-mono text-green-500  font-semibold  border-b
@@ -46,7 +45,7 @@ const PreviewConsole = ({srcDoc, consoleOutput}:any) => {
             >
               Console
             </div>
-            <pre className="font-medium   text-sm font-mono p-4 px-4 text-green-500 ">
+            <pre className="font-medium   text-sm font-mono p-2 px-13 text-green-500 ">
               {consoleOutput || "> Ready"}
             </pre>
           </ResizablePanel>
@@ -55,3 +54,4 @@ const PreviewConsole = ({srcDoc, consoleOutput}:any) => {
 }
 
 export default   React.memo(PreviewConsole)
+
