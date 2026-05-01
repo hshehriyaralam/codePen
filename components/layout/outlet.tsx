@@ -8,8 +8,8 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import HTML  from '@/public/html-lates-removebg-preview.png'
-import CSS  from '@/public/CSS-logo-removebg-preview.png'
-import JavaScript  from '@/public/js-new-removebg-preview.png'
+import CSS  from '@/public/css2.png'
+import JavaScript  from '@/public/js-new.png'
 
 const Outlet = () => {
   const [html, setHtml] = useState("");
@@ -17,6 +17,7 @@ const Outlet = () => {
   const [js, setJs] = useState("");
   const [srcDoc, setSrcDoc] = useState<any>([]);
   const [consoleOutput, setConsoleOutput] = useState("");
+
 
   const RunCode = () => {
     setConsoleOutput("");
@@ -53,9 +54,9 @@ const Outlet = () => {
   };
 
   const editors = [
-    ["HTML", html, setHtml, HTML],
-    ["CSS", css, setCss,  CSS,   ],
-    ["JavaScript", js, setJs,JavaScript ],
+    ["HTML", html, setHtml, HTML, "html", 25],
+    ["CSS", css, setCss,  CSS,    "css" , 35 ],
+    ["JavaScript", js, setJs,JavaScript , "javascript", 25  ],
   ];
 
   useEffect(() => {
