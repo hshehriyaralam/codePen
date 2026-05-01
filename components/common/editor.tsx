@@ -1,7 +1,7 @@
 "use client"
 
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Editor from '@monaco-editor/react';
 import {
 ResizablePanel,
@@ -12,17 +12,12 @@ import Image from 'next/image';
 
 const EditorComp = ({editors} :  any) => {
     const [layout, setLayout] = useState<any[]>([]);
-    const minSize = 60
+    const minSize = 50
     const editorClass = "bg-[#1e1e1e] border border-gray-700 rounded-md  shadow-sm py-4  min-w-[440px]";
+    const isLayoutReady = layout.length > 0
 
 
-
-
-
-
-
-
-
+  
   return (
      <ResizablePanelGroup
       orientation='horizontal'
@@ -31,8 +26,8 @@ const EditorComp = ({editors} :  any) => {
       w-full   overflow-auto sidebar  mb-4">
           {editors?.map(([title, value, setter, logo, language, imageSize]: any , index: number) => {
             const arrOflayout = Object.values(layout)
-              const isMin = arrOflayout[index] >= 10; 
-            
+            const   isMin =  arrOflayout[index] >= 10
+            // isLayoutReady ? arrOflayout[index]  >= 10 : true
             return(
             <ResizablePanel   
             maxSize={'100%'}
@@ -42,7 +37,6 @@ const EditorComp = ({editors} :  any) => {
               <div className={`w-full font-mono text-white
               border-b border-gray-800  px-4 text-md pb-2   flex items-center
                 transition duration-700`}>
-                {/* <div  className={`${isMin ? 'opacity-100 visible' : 'opacity-0 invisible'}`}> */}
                 {isMin && (
                   <Image
                   priority
@@ -50,10 +44,9 @@ const EditorComp = ({editors} :  any) => {
                 width={imageSize}
                 // height={40}
                 alt='logo'
-                className={`mx-1 ${isMin ? 'opacity-100 visible' : 'opacity-0 invisible'}   `}
+                className={`mx-2 ${isMin ? 'opacity-100 visible' : 'opacity-0 invisible'}   `}
                 />
                 )} 
-               {/* </div> */}
                  <span  className={` ${!isMin && 'transform: translate(50px, 100px)'} `} >{title}</span> 
               </div>
                 <Editor

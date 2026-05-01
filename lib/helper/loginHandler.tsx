@@ -17,9 +17,9 @@ export const handleLogin = async ({
        console.log("error", loginError)
       return;
     }
-    reset();
-    router.refresh()
     router.replace('/')
+    router.refresh()
+    reset();
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.log("catch Error", error);
