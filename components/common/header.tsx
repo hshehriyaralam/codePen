@@ -1,55 +1,39 @@
 'use client'
-import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Spinner } from "../ui/spinner";
+import { SignOut } from "@/hooks/signOutHandler";
 
-const Header = ({ RunCode }: any) => {
+const Header = ({ handleSaveProject, saveLoading, heading}: any) => {
   const [loading,setLoading]  = useState(false)
   const router = useRouter();
   const handleSignOut = async () => {
-    try{
-    setLoading(true)
-    const supabase = getSupabaseBrowserClient();
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.log("signOut", error);
-      setLoading(false)
-      return;
-    }
-    router.replace("/auth");
-    router.refresh();
-    setLoading(false)
-    }catch(error:unknown){
-      if(error instanceof Error){
-        console.log(error.message)
-      }
-    }
- 
-
+      await SignOut({setLoading, router})
   };
+  
 
   return (
     <div
       className="flex  flex-col gap-4 
          lg:gap-0  lg:flex-row  lg:items-center lg:justify-between  p-2  "
     >
-      <div className="mx-3">
+      <div className="mx-3 my-3">
         <h1 className="text-4xl  font-quicksand font-bold  text-teal-600     font-mono ">
-          CodeJS
+          {heading}
         </h1>
-        <p className="text-white font-mono  text-sm">
+        {/* <p className="text-white font-mono  text-sm">
           {" "}
           Live Preview for HTML, CSS and JavaScript
-        </p>
+        </p> */}
       </div>
       <div className="flex items-center justify-center gap-2 ">
         <button
-          onClick={RunCode}
-          className="py-1.5 px-3.5 py-1  text-md rounded-xl text-white 
+        disabled={saveLoading}
+          onClick={handleSaveProject}
+          className="w-38 h-9 flex items-center justify-center px-3.5 py-1  text-md rounded-xl text-white 
           cursor-pointer bg-teal-500  font-bold  hover:bg-teal-600   font-mono  "
         >
-          RunCode
+          {saveLoading ? <Spinner  className="w-6 h-6" /> : 'Save Project'}
         </button>
         <button
           disabled={loading}

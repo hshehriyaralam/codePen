@@ -14,9 +14,20 @@ const EditorComp = ({editors} :  any) => {
     const [layout, setLayout] = useState<any[]>([]);
     const minSize = 50
     const editorClass = "bg-[#1e1e1e] border border-gray-700 rounded-md  shadow-sm py-4  min-w-[440px]";
-    const isLayoutReady = layout.length > 0
+    const [isMobile, setIsMobile] = useState(false)
 
 
+    useEffect(() => {
+      const handleResize = () => {
+        if(window.innerWidth <  768){
+          setIsMobile(true)
+        }
+      };
+      window.addEventListener("resize", handleResize)
+      return () => window.removeEventListener("resize", handleResize)
+    },[])
+
+    
   
   return (
      <ResizablePanelGroup
@@ -26,8 +37,7 @@ const EditorComp = ({editors} :  any) => {
       w-full   overflow-auto sidebar  mb-4">
           {editors?.map(([title, value, setter, logo, language, imageSize]: any , index: number) => {
             const arrOflayout = Object.values(layout)
-            const   isMin =  arrOflayout[index] >= 10
-            // isLayoutReady ? arrOflayout[index]  >= 10 : true
+            const isMin =  arrOflayout[index] >= 10
             return(
             <ResizablePanel   
             maxSize={'100%'}

@@ -1,11 +1,10 @@
-import Loader from "@/components/common/loader";
-import Outlet from "@/components/layout/outlet";
+import HomePage from "@/components/layout/homePage";
 
 
 export default function Home() {
   return (
    <div>
-    <Outlet />
+    <HomePage />
    </div>
   );
 }

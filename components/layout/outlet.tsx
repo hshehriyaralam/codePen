@@ -10,14 +10,15 @@ import {
 import HTML  from '@/public/html-lates-removebg-preview.png'
 import CSS  from '@/public/css2.png'
 import JavaScript  from '@/public/js-new.png'
+import { saveProject } from "@/app/actions/save.project";
 
-const Outlet = () => {
-  const [html, setHtml] = useState("");
-  const [css, setCss] = useState("");
-  const [js, setJs] = useState("");
+const Outlet = ({ initialData} : { initialData : any}) => {
+  const [saveLoading,setSaveLoading ] = useState(false)
+  const [html, setHtml] = useState(initialData?.html || "");
+  const [css, setCss] = useState(initialData.css || "");
+  const [js, setJs] = useState(initialData.js || "");
   const [srcDoc, setSrcDoc] = useState<any>([]);
   const [consoleOutput, setConsoleOutput] = useState("");
-
 
   const RunCode = () => {
     setConsoleOutput("");
@@ -59,6 +60,29 @@ const Outlet = () => {
     ["JavaScript", js, setJs,JavaScript , "javascript", 25  ],
   ];
 
+
+
+  const handleSaveProject =  async () => {
+    try{
+      setSaveLoading(true)
+      const res =  await saveProject({
+         projectId :initialData.id ,
+          html : html,
+          css : css,
+          js : js
+      })
+      if(!res?.success){
+        console.log("save failed ")
+        return
+      }
+      setSaveLoading(false)
+    }catch(error:unknown){
+      if(error instanceof Error){
+        console.log("failed save project", error.message)
+      }
+    }
+  }
+
   useEffect(() => {
     const handleMessage = (event:any) => {
       if(event.data?.type === 'console'){
@@ -83,7 +107,11 @@ const Outlet = () => {
 
   return (
     <section className="w-full min-h-screen bg-[#0f1117]  overflow-scroll scrollbar ">
-      <Header />
+      <Header   
+      heading={initialData.title}
+      saveLoading={saveLoading}
+      handleSaveProject={handleSaveProject}
+      />
       <ResizablePanelGroup
       orientation="vertical"
       className="lg:min-h-[580px]  min-h-[1000px]  w-full   ">
