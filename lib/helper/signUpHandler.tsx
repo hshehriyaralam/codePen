@@ -10,11 +10,9 @@ export const handleSignUp = async ({
 }: SignUpProp) => {
   const supabase = getSupabaseBrowserClient();
   try {
-
     if (password.length < 6) {
     return { error: 'Password must be at least 6 characters long' }
     }
-
 
     const { data: user, error: signUpError } = await supabase.auth.signUp({
       email: email,
@@ -29,6 +27,15 @@ export const handleSignUp = async ({
       console.log("signUp Error", signUpError)
       return;
     }
+    const userId = user?.user?.id;
+    if (!userId) return;
+    await supabase.from("profiles").insert([
+      {
+        id: userId,
+        email: user.user?.email,
+        name: user.user?.user_metadata?.name,
+      },
+    ] as any);
     navigateForm();
     reset();
   } catch (error: unknown) {

@@ -27,10 +27,12 @@ const EditorComp = ({editors} :  any) => {
       return () => window.removeEventListener("resize", handleResize)
     },[])
 
-    
+
   
   return (
-     <ResizablePanelGroup
+    <>
+
+        <ResizablePanelGroup
       orientation='horizontal'
       onLayoutChange={(size:any) => setLayout(size)}
      className="grid lg:grid-cols-3 grid-colos-1   lg:px-4  px-2  
@@ -74,8 +76,7 @@ const EditorComp = ({editors} :  any) => {
             </ResizablePanel>
           )})}
         </ResizablePanelGroup>
-
-
+      </>
   )
 }
 

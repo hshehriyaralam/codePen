@@ -13,7 +13,7 @@ const TitleModal = ({
   return (
             <div
          onClick={(e)  => e.stopPropagation()}
-        className="fixed inset-0  bg-[#0f1117]/20 backdrop-blur-sm flex items-center justify-center z-50">
+        className="fixed inset-0  bg-[#0f1117]/60 backdrop-blur-md flex items-center justify-center z-50">
           <div 
      
           className="w-[400px] h-[200px]   shadow-xl bg-[#1e1e1e]/50  rounded-xl  p-6
