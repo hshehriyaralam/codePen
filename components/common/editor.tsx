@@ -30,9 +30,56 @@ const EditorComp = ({editors} :  any) => {
 
   
   return (
-    <>
-
-        <ResizablePanelGroup
+    <div>
+{
+  isMobile ? (
+    <div>
+    <ResizablePanelGroup
+      orientation='vertical'
+      // onLayoutChange={(size:any) => setLayout(size)}
+     className="w-full flex flex-col   overflow-auto sidebar  mb-4">
+          {editors?.map(([title, value, setter, logo, language, imageSize]: any) => {
+            // const arrOflayout = Object.values(layout)
+            // const isMin =  arrOflayout[index] >= 10
+            return(
+            <ResizablePanel   
+            maxSize={'100%'}
+            minSize={minSize}
+            key={title}>
+            <div className={editorClass}>
+              <div className={`w-full font-mono text-white
+              border-b border-gray-800  px-4 text-md pb-2   flex items-center
+                transition duration-700`}>
+                {/* {isMin && ( */}
+                  <Image
+                  priority
+                src={logo}  
+                width={imageSize}
+                // height={40}
+                alt='logo'
+                className={`mx-2   `}
+                />
+                {/* )}  */}
+                 <span  className={` `} >{title}</span> 
+              </div>
+                <Editor
+                height="210px"
+                loading={false}
+                defaultLanguage={language}
+                defaultValue={value}
+                value={value} 
+                theme="vs-dark"
+                onChange={(value) => setter(value)}
+              />
+            </div>
+       
+            </ResizablePanel>
+          )})}
+        </ResizablePanelGroup>
+    </div>
+  ) : ( 
+    
+    <ResizablePanelGroup
       orientation='horizontal'
       onLayoutChange={(size:any) => setLayout(size)}
      className="grid lg:grid-cols-3 grid-colos-1   lg:px-4  px-2  
@@ -76,7 +123,12 @@ const EditorComp = ({editors} :  any) => {
             </ResizablePanel>
           )})}
         </ResizablePanelGroup>
-      </>
+      
+      )
+}
+
+      
+      </div>
   )
 }
 
