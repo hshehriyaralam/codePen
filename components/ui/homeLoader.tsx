@@ -1,135 +1,107 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const HomeLoader = () => {
   return (
     <StyledWrapper>
-      <div className="loader">
-        <div className="loading-text">
-          Loading<span className="dot">.</span>
-          <span className="dot">.</span>
-          <span className="dot">.</span>
-        </div>
-        <div className="loading-bar-background">
-          <div className="loading-bar">
-            <div className="white-bars-container">
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-              <div className="white-bar" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="lds-spinner"><div /><div /><div /><div /><div /><div /><div /><div /><div /><div /><div /><div /></div>
     </StyledWrapper>
   );
-};
+}
 
 const StyledWrapper = styled.div`
-  .loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .loading-text {
-    color: white;
-    font-size: 14pt;
-    font-weight: 600;
-    margin-left: 10px;
-  }
-
-  .dot {
-    margin-left: 3px;
-    animation: blink 1.5s infinite;
-  } 
-  .dot:nth-child(2) {
-    animation-delay: 0.3s;
-  }
-
-  .dot:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-
-  .loading-bar-background {
-    --height: 30px;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 5px;
-    width: 200px;
-    height: var(--height);
-    background-color: #212121 
-    box-shadow: #0c0c0c -2px 2px 4px 0px inset;
-    border-radius: calc(var(--height) / 2);
-  }
-
-  .loading-bar {
+  .lds-spinner {
+    color: official;
+    display: inline-block;
     position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    --height: 20px;
-    width: 0%;
-    height: var(--height);
-    overflow: hidden;
-    background: rgb(222, 74, 15);
-    background: linear-gradient(
-      0deg,
-      rgba(222, 74, 15, 1) 0%,
-      rgba(249, 199, 79, 1) 100%
-    );
-    border-radius: calc(var(--height) / 2);
-    animation: loading 4s ease-out infinite;
+    width: 80px;
+    height: 80px;
   }
 
-  .white-bars-container {
+  .lds-spinner div {
+    transform-origin: 40px 40px;
+    animation: lds-spinner 1.2s linear infinite;
+  }
+
+  .lds-spinner div:after {
+    content: " ";
+    display: block;
     position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 18px;
+    top: 3px;
+    left: 37px;
+    width: 6px;
+    height: 18px;
+    border-radius: 20%;
+    background: #fff;
   }
 
-  .white-bar {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 70%
-    );
-    width: 10px;
-    height: 45px;
-    opacity: 0.3;
-    rotate: 45deg;
+  .lds-spinner div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -1.1s;
   }
 
-  @keyframes loading {
+  .lds-spinner div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1s;
+  }
+
+  .lds-spinner div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.9s;
+  }
+
+  .lds-spinner div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.8s;
+  }
+
+  .lds-spinner div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7s;
+  }
+
+  .lds-spinner div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.6s;
+  }
+
+  .lds-spinner div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5s;
+  }
+
+  .lds-spinner div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4s;
+  }
+
+  .lds-spinner div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3s;
+  }
+
+  .lds-spinner div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.2s;
+  }
+
+  .lds-spinner div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.1s;
+  }
+
+  .lds-spinner div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+  }
+
+  @keyframes lds-spinner {
     0% {
-      width: 0;
+      opacity: 1;
     }
-    80% {
-      width: 100%;
-    }
-    100% {
-      width: 100%;
-    }
-  }
 
-  @keyframes blink {
-    0%,
     100% {
       opacity: 0;
-    }
-    50% {
-      opacity: 1;
     }
   }`;
 
