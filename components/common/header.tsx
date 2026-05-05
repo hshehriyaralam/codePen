@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Spinner } from "../ui/spinner";
 import { SignOut } from "@/hooks/signOutHandler";
+import Link from "next/link";
 
 const Header = ({ handleSaveProject, saveLoading, heading, isIdMatch}: any) => {
   const [loading,setLoading]  = useState(false)
@@ -17,15 +18,16 @@ const Header = ({ handleSaveProject, saveLoading, heading, isIdMatch}: any) => {
       className="flex  flex-col gap-4 
          lg:gap-0  lg:flex-row  lg:items-center lg:justify-between  p-2  "
     >
-      <div className="mx-3 my-3">
+      <Link href={'/'}
+       className="mx-3 my-3">
         <h1 className="text-4xl  font-quicksand font-bold  text-white    font-mono ">
           {heading}
         </h1>
-      </div>
+      </Link>
       <div className="flex items-center justify-center gap-2 ">
         {isIdMatch && (
           <button
-        disabled={saveLoading}
+          disabled={saveLoading}
           onClick={handleSaveProject}
           className="w-38 h-9 flex items-center justify-center px-3.5 py-1  text-md rounded-xl text-white 
           cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono "

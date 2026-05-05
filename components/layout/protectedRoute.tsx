@@ -12,8 +12,7 @@ const ProtectedRoute = ({children}:any) => {
             router.replace("/auth")
             router.refresh()
             return
-        }
-    }
+          }}
     useEffect(() => {
         getUser()
     },[])

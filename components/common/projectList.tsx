@@ -65,4 +65,4 @@ const ProjectList = ({
   );
 };
 
-export default  React.memo(ProjectList)
+export default React.memo(ProjectList);

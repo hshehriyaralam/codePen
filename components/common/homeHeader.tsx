@@ -1,35 +1,38 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { Spinner } from "../ui/spinner";
+import React, { useCallback, useState } from "react";
+// import { Spinner } from "../ui/spinner";
 import TitleModal from "./titleModal";
 import { createProject } from "@/app/actions/create.project";
-import { SignOut } from "@/hooks/signOutHandler";
+// import { SignOut } from "@/hooks/signOutHandler";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const HomeHeader = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState("");
-  const [isPublic, setIsPublic] = useState(false)
+  const [title, setTitle] = useState<any>("");
+  const [isPublic, setIsPublic] = useState(false);
   const router = useRouter();
-  const handleSignOut = async () => {
-     await SignOut({setLoading, router})
-  };
-  const handleCreateProject =  async (e: any) => {
-    e.preventDefault();
-    try{
-      setLoading(true)
-      const res = await createProject({title, isPublic})
-      if(res?.success){
-      router.push(`/project/${res?.projectId}`)    
-    }
-    }catch(error:unknown){
-      if(error instanceof  Error ){
-        console.log("Create Project Error", error)
+  // const handleSignOut = async () => {
+  //    await SignOut({setLoading, router})
+  // };
+  const handleCreateProject = async (e: any) => {
+      e.preventDefault();
+      try {
+        setLoading(true);
+        const res = await createProject({ title, isPublic });
+        if (res?.success) {
+          router.push(`/project/${res?.projectId}`);
+        }
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log("Create Project Error", error);
+        }
+      } finally {
+        setLoading(false);
       }
-    }
-  };
+    };
 
   return (
     <div>
@@ -37,7 +40,8 @@ const HomeHeader = () => {
         className="flex  flex-col gap-4 
          lg:gap-0  lg:flex-row  lg:items-center lg:justify-between  p-2  "
       >
-        <div className="mx-3">
+        <Link href={'/'}
+        className="mx-3">
           <h1 className="text-4xl  font-quicksand font-bold  text-teal-600     font-mono ">
             CodeJS
           </h1>
@@ -45,7 +49,7 @@ const HomeHeader = () => {
             {" "}
             Live Preview for HTML, CSS and JavaScript
           </p>
-        </div>
+        </Link>
         <div className="flex items-center justify-center gap-2 ">
           <Button
             onClick={() => setShowModal(true)}

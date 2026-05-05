@@ -1,12 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const HomeLoader = () => {
   return (
     <StyledWrapper>
       <div className="loader">
         <div className="loading-text">
-          Loading<span className="dot">.</span><span className="dot">.</span><span className="dot">.</span>
+          Loading<span className="dot">.</span>
+          <span className="dot">.</span>
+          <span className="dot">.</span>
         </div>
         <div className="loading-bar-background">
           <div className="loading-bar">
@@ -27,7 +29,7 @@ const HomeLoader = () => {
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .loader {
