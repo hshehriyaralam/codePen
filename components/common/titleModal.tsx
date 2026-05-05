@@ -3,6 +3,7 @@ import { Spinner } from '../ui/spinner'
 import type { HeaderProps } from '@/types/project'
 import { Button } from '../ui/button'
 import Switch from './toogle'
+import React from 'react'
 
 
 const TitleModal = ({
@@ -89,4 +90,4 @@ const TitleModal = ({
   )
 }
 
-export default TitleModal
+export default   React.memo(TitleModal)

@@ -6,35 +6,43 @@ import ProjectList from "../common/projectList"
 import { getPublicProjects } from "@/app/actions/getPublic.project"
 import Navbar from "../common/navbar"
 import { getBothProjects } from "@/app/actions/getBoth.project"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 
 const HomePage =    () => {
   const [response, setResponse] = useState("Your Work")
   const [project, setProject] = useState<any>([])
   const [heading, setHeading] = useState('')
+  const [loading, setLoading] = useState(true)
+
+
 
 
   const getProjects = async () => {
-  const publicRes = await getPublicProjects()
-  const privateRes =  await getAllProjects()
-  const bothRes =  await getBothProjects()
+  setLoading(true)
+  let res ;
   if(response === "Your Work"){
-    setProject(privateRes?.projects)
-    setHeading(response)
+    res =  await getAllProjects()
   }else if(response === "Public"){
-    setProject(publicRes?.projects)
-    setHeading(response)
+    res =  await getPublicProjects()
   }else{
-    setProject(bothRes?.projects)
-    setHeading(response)
+    res =  await getBothProjects()
   }
-  return 
-  }
+  setProject(res?.projects)
+  setHeading(response)
+  setLoading(false)
+}
 
-  useEffect(() => {
-    getProjects()
+
+
+
+
+    useEffect(() => {
+      getProjects()
   }, [response])
+
+
+
 
 
   
@@ -45,10 +53,11 @@ const HomePage =    () => {
         response={response}
         setResponse={setResponse} />
         <ProjectList
+        loading={loading}
         heading={heading}
         projects={project}/>
     </div>
   )
 }
 
-export default HomePage
+export default React.memo(HomePage)

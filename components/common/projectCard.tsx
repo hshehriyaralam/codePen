@@ -568,4 +568,4 @@ const StyledWrapper = styled.div`
     transform: rotateZ(90deg) rotateY(180deg) translateY(0.45em) translateX(-1.4em);
   }`;
 
-export default ProjectCard;
+export default   React.memo(ProjectCard) 

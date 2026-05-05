@@ -1,3 +1,11 @@
+"use client"
+
+import React from "react";
+
+
+
+
+
 const Navbar = ({ response, setResponse }: any) => {
   const links = [
     {
@@ -18,7 +26,7 @@ const Navbar = ({ response, setResponse }: any) => {
     <div className="p-1">
       <div className="w-[264px] bg-black   mx-5  cursor-pointer  rounded">
         <div className="flex itmes-center  ">
-          {links?.map((link) => {
+          {links?.map((link:any) => {
             const isActive = response == link.text;
 
             return (
@@ -43,4 +51,4 @@ const Navbar = ({ response, setResponse }: any) => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar)

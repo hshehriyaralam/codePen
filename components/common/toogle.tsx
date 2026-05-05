@@ -133,4 +133,4 @@ const StyledWrapper = styled.div`
    background-color: #61b5b4;
   }`;
 
-export default Switch;
+export default   React.memo(Switch)
