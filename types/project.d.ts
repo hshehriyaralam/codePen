@@ -4,6 +4,8 @@ export type HeaderProps = {
     setTitle  : any,
     loading    : boolean,
     setShowModal  : any,
+    setIsPublic :any,
+    isPublic  : boolean,
 }
 
 

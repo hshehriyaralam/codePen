@@ -12,7 +12,7 @@ import CSS  from '@/public/css2.png'
 import JavaScript  from '@/public/js-new.png'
 import { saveProject } from "@/app/actions/save.project";
 
-const Outlet = ({ initialData} : { initialData : any}) => {
+const Outlet = ({ initialData, isIdMatch} : { initialData : any , isIdMatch : boolean}) => {
   const [saveLoading,setSaveLoading ] = useState(false)
   const [html, setHtml] = useState(initialData?.html || "");
   const [css, setCss] = useState(initialData.css || "");
@@ -106,11 +106,12 @@ const Outlet = ({ initialData} : { initialData : any}) => {
 
 
   return (
-    <section className="w-full min-h-screen bg-[#0f1117]  overflow-scroll scrollbar ">
+    <section className="w-full min-h-screen bg-black  overflow-scroll scrollbar ">
       <Header   
       heading={initialData.title}
       saveLoading={saveLoading}
       handleSaveProject={handleSaveProject}
+      isIdMatch={isIdMatch}
       />
       <ResizablePanelGroup
       orientation="vertical"

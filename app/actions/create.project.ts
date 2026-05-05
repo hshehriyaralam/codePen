@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/server"
 
 
-export async function createProject({title}  : {title : string}){   
+export async function createProject({title, isPublic}  : {title : string, isPublic : boolean}){   
     const supabase =  await createClient()
 
     const {data :user , error : userError } = await supabase.auth.getUser()
@@ -12,12 +12,18 @@ export async function createProject({title}  : {title : string}){
         console.log("user not axist")
         return
     }
+    
+
+    const userId = user.user?.id
+    const username = user?.user?.user_metadata?.name
     const { data ,error:createError} = await supabase.from("projects").insert([{
-        user_id : user.user?.id,
+        user_id : userId,
         title : title,
         html  : '',
         css : '',
         js :  '',
+        is_public : isPublic,
+        username  : username,
     }]).select().single()
 
     if(createError){

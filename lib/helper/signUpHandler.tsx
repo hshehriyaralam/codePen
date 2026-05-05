@@ -24,8 +24,7 @@ export const handleSignUp = async ({
       },
     });
     if (signUpError) {
-      console.log("signUp Error", signUpError)
-      return;
+      throw new Error
     }
     const userId = user?.user?.id;
     if (!userId) return;

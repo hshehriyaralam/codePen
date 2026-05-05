@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const ProtectedRoute = ({children}:any) => {
-    // const [user, setUser] = useState<any[]>([])
     const router = useRouter()
     const getUser = async () => {
         const supabase = getSupabaseBrowserClient()

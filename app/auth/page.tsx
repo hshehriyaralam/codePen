@@ -9,13 +9,13 @@ const Auth = () => {
     setIsLogin((prev) => !prev);
   }, []);
 
-  const inputStyling = `rounded-md   bg-[#0f111e]  text-white text-sm outline-none   px-6 py-3  font-mono  focus:border   focus:border-teal-500 `;
+  const inputStyling = `rounded-md   bg-[#0f111e]  text-white text-sm outline-none   px-6 py-3  font-mono  focus:border    `;
   return (
-    <section className="w-full min-h-screen bg-[#0f1117]  flex items-center justify-center  font-mono   ">
-      <div className="w-[75%]  min-h-[500px] bg-[#1e1e1e] not-only:not-only-of-type: grid lg:grid-cols-2  grid-cols-1  rounded-3xl   ">
+    <section className="w-full min-h-screen bg-black     flex items-center justify-center  font-mono   ">
+      <div className="w-[75%]  min-h-[500px] bg-black/80  border border-gray-500   not-only:not-only-of-type: grid lg:grid-cols-2  grid-cols-1  rounded-3xl   ">
         <div
-          className="hidden lg:flex w-full bg-[#1e1e1e]  via  bg-[#0f1117] to bg-cyan-700   p-6
-         flex-col  justify-center  items-center"
+          className="hidden lg:flex w-full  bg-[#0f2027]   p-6
+         flex-col  justify-center  items-center  rounded-2xl "
         >
           <h2 className="font-bold text-white font-mono text-3xl   ">CodeJS</h2>
           <p className="font-semibold text-white font-mono text-sm ">

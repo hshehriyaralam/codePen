@@ -5,27 +5,25 @@ import { Spinner } from "../ui/spinner";
 import TitleModal from "./titleModal";
 import { createProject } from "@/app/actions/create.project";
 import { SignOut } from "@/hooks/signOutHandler";
+import { Button } from "../ui/button";
 
 const HomeHeader = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState("");
+  const [isPublic, setIsPublic] = useState(false)
   const router = useRouter();
   const handleSignOut = async () => {
      await SignOut({setLoading, router})
   };
-
   const handleCreateProject =  async (e: any) => {
     e.preventDefault();
     try{
       setLoading(true)
-      const res = await createProject({title})
+      const res = await createProject({title, isPublic})
       if(res?.success){
       router.push(`/project/${res?.projectId}`)    
     }
-    // setLoading(false)
-    // setTitle("");
-    // setShowModal(false);
     }catch(error:unknown){
       if(error instanceof  Error ){
         console.log("Create Project Error", error)
@@ -49,21 +47,21 @@ const HomeHeader = () => {
           </p>
         </div>
         <div className="flex items-center justify-center gap-2 ">
-          <button
+          <Button
             onClick={() => setShowModal(true)}
-            className="py-1.5 px-3.5 py-1  text-md rounded-xl text-white 
-          cursor-pointer bg-teal-500  font-bold  hover:bg-teal-600   font-mono  "
+            className=" h-10  text-md  text-white 
+          cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono  "
           >
             Create Project
-          </button>
-          <button
+          </Button>
+          {/* <Button
             disabled={loading}
             onClick={handleSignOut}
-            className="w-24 h-9 px-3.5 py-1 flex items-center justify-center  text-md rounded-xl text-white 
-          cursor-pointer bg-teal-500  hover:bg-teal-600  font-bold  font-mono  "
+            className="w-24 h-10 px-3.5 py-1 flex items-center justify-center  text-md  text-white 
+         cursor-pointer border border-gray-700  bg-[#0f2023]  font-bold     font-mono   "
           >
-            {loading ? <Spinner className="w-5 h-5" /> : "SignOut"}
-          </button>
+            {loading ? <Spinner className="w-5 h-5  text-gray-300 " /> : "SignOut"}
+          </Button> */}
         </div>
       </div>
 
@@ -74,6 +72,8 @@ const HomeHeader = () => {
           setTitle={setTitle}
           loading={loading}
           setShowModal={setShowModal}
+          setIsPublic={setIsPublic}
+          isPublic={isPublic}
         />
       )}
     </div>

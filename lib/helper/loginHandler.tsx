@@ -14,15 +14,17 @@ export const handleLogin = async ({
         password : password,
       })
     if (loginError) {
-       console.log("error", loginError)
-      return;
+       console.log("error", loginError.message)
+       throw new Error
     }
+
+   
     router.replace('/')
     router.refresh()
     reset();
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.log("catch Error", error);
+      console.log("catch Error", error?.message);
     }
   }
 };

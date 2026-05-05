@@ -2,21 +2,25 @@
 import { createClient } from "@/lib/supabase/server"
 
 
-export async function getSingleProjects({projectId} : {projectId :string}){   
+export async function getBothProjects(){   
     const supabase =  await createClient()
     const {data :user , error : userError } = await supabase.auth.getUser()
-    const { data : project, error} = await supabase.from("projects")
+    const userId = user?.user?.id
+
+    const { data : projects, error} = await supabase.from("projects")
     .select("*")
-    .eq("id",projectId)
-    .single()
+    .or(`user_id.eq.${userId}, is_public.eq.${true}`) 
+    
 
     
+  
+
     if(error){
         console.log("failed to fetch Projects", error.message)
         return
     }
     return{ 
         success : true,
-        project : project
+        projects : projects
     }
 }

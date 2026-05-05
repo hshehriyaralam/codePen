@@ -95,7 +95,7 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
             type="submit"
             className="w-full text-center text-xl text-white
             cursor-pointer  flex items-center justify-center 
-            bg-teal-500  rounded-md py-2  font-mono  hover:bg-teal-600 "
+            bg-[#0f2027]  rounded-md py-2  font-mono  hover:bg-[#0f2027]/80  "
           >
             {loading ? <Spinner className="h-6 w-6 " /> : "SignUp"}
           </button>
