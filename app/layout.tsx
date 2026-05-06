@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ProtectedRoute from "@/components/layout/protectedRoute";  
+import ProtectedRoute from "@/components/layout/protectedRoute";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CodePen",
   description: "Code Pen",
-  icons : '/logo.svg'
+  icons: "/file.svg",
 };
 
 export default function RootLayout({
@@ -31,11 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-            <ProtectedRoute>
-        {children}
-        <Toaster />
-            </ProtectedRoute>
-        </body>
+        <ProtectedRoute>
+          {children}
+          <Toaster />
+        </ProtectedRoute>
+      </body>
     </html>
   );
 }
