@@ -103,7 +103,7 @@ const Outlet = ({
   }, [html, css, js]);
 
   return (
-    <section className="w-full min-h-screen bg-black  overflow-scroll scrollbar ">
+    <section className="max-w-full min-h-screen bg-black  overflow-scroll scrollbar ">
       <Header
         heading={initialData.title}
         saveLoading={saveLoading}

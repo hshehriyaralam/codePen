@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ProjectCard from "./projectCard";
-import HomeLoader from "../ui/homeLoader";
 import React from "react";
+import Loader from "./loader";
 
 const ProjectList = ({
   projects,
@@ -13,20 +13,20 @@ const ProjectList = ({
   loading: boolean;
 }) => {
   return (
-    <div className="mt-10"> 
-  <h1 className="text-2xl font-semibold mb-6 text-center">
+    <div className="font-quicksand"> 
+  <h1 className="text-4xl font-semibold lg:my-6  my-8 lg:text-left  text-center">
     {heading}
   </h1>
   {loading ? (
     <div className="flex justify-center">
-      <HomeLoader />
+      <Loader />
     </div>
   ) : projects.length === 0 ? (
     <p className="text-center text-gray-400">
       No Projects Found
     </p>
   ) : (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:mx-0 mx-6">
       {projects.map((project: any) => (
         <Link key={project.id} href={`/project/${project.id}`}>
           <ProjectCard

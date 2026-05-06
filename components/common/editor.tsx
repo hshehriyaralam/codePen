@@ -41,7 +41,7 @@ const EditorComp = ({ editors }: any) => {
               <ResizablePanel maxSize={"100%"} minSize={minSize} key={title}>
                 <div className={editorClass}>
                   <div
-                    className={`w-full font-mono text-white
+                    className={`w-full font-quicksand text-white
               border-b border-gray-800  px-4 text-md pb-2   flex items-center
                 transition duration-700`}
                   >

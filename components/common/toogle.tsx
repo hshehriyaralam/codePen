@@ -56,7 +56,7 @@ const StyledWrapper = styled.div`
     border-radius: 7px;
     width: 36px;
     height: 14px;
-    background-color: rgb(0, 0, 0, 0.38);
+    background-color: #9CA3AF;
     vertical-align: top;
     transition:
       background-color 0.2s,
@@ -83,15 +83,15 @@ const StyledWrapper = styled.div`
   /* Checked */
   .cl-switch > input:checked {
     right: -10px;
-    background-color: #85b8b7;
+    background-color: #ff291a;
   }
 
   .cl-switch > input:checked + span::before {
-    background-color: #85b8b7;
+    background-color: #ff291a;
   }
 
   .cl-switch > input:checked + span::after {
-    background-color: #018786;
+    background-color: #fff;
     transform: translateX(16px);
   }
   /* Hover, Focus */

@@ -16,7 +16,7 @@ const PreviewConsole = ({ srcDoc, consoleOutput }: any) => {
         className="w-full min-h-[270px] bg-gray-100 overflow-hidden"
       >
         <div
-          className="w-full font-mono text-rose-500  font-semibold  border-b
+          className="w-full font-quicksand text-rose-500  font-semibold  border-b
              border-gray-300 px-4  text-md pb-4 mt-4"
         >
           Preview
@@ -27,7 +27,7 @@ const PreviewConsole = ({ srcDoc, consoleOutput }: any) => {
           frameBorder={0}
           sandbox="allow-scripts"
           srcDoc={srcDoc}
-          className="font-semibold  text-md font-mono p-1 px-2"
+          className="font-semibold  text-md font-quicksand p-1 px-2"
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
@@ -37,12 +37,12 @@ const PreviewConsole = ({ srcDoc, consoleOutput }: any) => {
         className="w-full min-h-[300px] bg-black "
       >
         <div
-          className="w-full font-mono text-green-500  font-semibold  border-b
+          className="w-full font-quicksand text-green-500  font-semibold  border-b
              border-gray-700 px-4  text-md py-4 "
         >
           Console
         </div>
-        <pre className="font-medium   text-sm font-mono p-2 px-13 text-green-500 ">
+        <pre className="font-medium   text-sm font-quicksand p-2 px-13 text-green-500 ">
           {consoleOutput || "> Ready"}
         </pre>
       </ResizablePanel>

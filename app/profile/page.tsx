@@ -1,17 +1,16 @@
 "use client";
 import { getAllProjects } from "@/app/actions/get.projects";
-import HomeHeader from "../common/homeHeader";
-import ProjectList from "../common/projectList";
-import { getPublicProjects } from "@/app/actions/getPublic.project";
+import HomeHeader from "@/components/common/homeHeader"
+import ProjectList from "@/components/common/projectList";
 import React, { useEffect, useState } from "react";
 
-const HomePage = () => {
+const Profile = () => {
   const [project, setProject] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
   const getProjects = async () => {
     setLoading(true);
-    let res  = await getPublicProjects()
+    let res  = await getAllProjects()
     setProject(res?.projects);
     setLoading(false);
   };
@@ -25,7 +24,7 @@ const HomePage = () => {
   <div className="max-w-7xl mx-auto px-4">
     <ProjectList
       loading={loading}
-      heading={"All"}
+      heading={'Your Works'}
       projects={project}
     />
   </div>
@@ -33,4 +32,4 @@ const HomePage = () => {
   );
 };
 
-export default React.memo(HomePage);
+export default React.memo(Profile);

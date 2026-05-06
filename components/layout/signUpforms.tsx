@@ -27,9 +27,9 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
   };
 
   return (
-    <div className="p-6  flex flex-col items-center justify-center gap-4 ">
-      <div className="p-4">
-        <h2 className="text-white font-mono text-2xl ">create your account</h2>
+    <div className="p-6  flex flex-col items-center justify-center ">
+      <div className="p-3">
+        <h2 className="text-white font-quicksand text-3xl ">Create your account</h2>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -38,7 +38,7 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
         <div className="flex flex-col  gap-1 ">
           <label
             htmlFor={nameId}
-            className="text-white font-mono font-normal  text-sm  "
+            className="text-white font-quicksand font-normal  text-sm  "
           >
             Enter Your Name
           </label>
@@ -54,7 +54,7 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
         <div className="flex flex-col  gap-1 ">
           <label
             htmlFor={emailId}
-            className="text-white font-mono font-normal  text-sm  "
+            className="text-white font-quicksand font-normal  text-sm  "
           >
             Enter Your email
           </label>
@@ -70,7 +70,7 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
         <div className="flex flex-col  gap-1">
           <label
             htmlFor={passId}
-            className="text-white font-mono font-normal  text-sm  "
+            className="text-white font-quicksand font-normal  text-sm  "
           >
             Enter Your passwrord
           </label>
@@ -94,17 +94,17 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
             disabled={loading}
             type="submit"
             className="w-full text-center text-xl text-white
-            cursor-pointer  flex items-center justify-center 
-            bg-[#0f2027]  rounded-md py-2  font-mono  hover:bg-[#0f2027]/80  "
+            cursor-pointer  flex items-center justify-center  
+              rounded-md py-2  font-quicksand   bg-[#ff291a]/70  hover:bg-[#ff291a]/50 "
           >
             {loading ? <Spinner className="h-6 w-6 " /> : "SignUp"}
           </button>
-          <p className="text-white font-mono text-xs  text-center  my-3">
+          <p className="text-white font-quicksand text-xs  text-center  my-3">
             Already have an account?
             <button
               type="button"
               onClick={navigateForm}
-              className="text-xs text-sm text-teal-600 hover:underline cursor-pointer
+              className="text-xs text-sm text-[#ff291a] hover:underline cursor-pointer
              font-semibold  mx-1"
             >
               Login
