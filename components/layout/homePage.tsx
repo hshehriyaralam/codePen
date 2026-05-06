@@ -32,11 +32,19 @@ const HomePage = () => {
     getProjects();
   }, [response]);
   return (
-    <div className="bg-black p-2   w-full min-h-screen ">
-      <HomeHeader />
-      <Navbar response={response} setResponse={setResponse} />
-      <ProjectList loading={loading} heading={heading} projects={project} />
-    </div>
+    // bg-[#0d0f1a]
+  <div className="bg-black min-h-screen text-white">
+  <HomeHeader />
+  <Navbar response={response} setResponse={setResponse} />
+
+  <div className="max-w-7xl mx-auto px-4">
+    <ProjectList
+      loading={loading}
+      heading={heading}
+      projects={project}
+    />
+  </div>
+</div>
   );
 };
 

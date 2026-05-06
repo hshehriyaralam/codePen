@@ -1,12 +1,14 @@
 import type { SignUpProp } from "@/types/auth";
 import { getSupabaseBrowserClient } from "../supabase/browserClient";
 
+
 export const handleSignUp = async ({
   name,
   email,
   password,
   reset,
   navigateForm,
+  toast
 }: SignUpProp) => {
   const supabase = getSupabaseBrowserClient();
   try {
@@ -24,8 +26,12 @@ export const handleSignUp = async ({
       },
     });
     if (signUpError) {
-      throw new Error
+      console.log(signUpError.message)
+    toast.error(signUpError.message, {position : 'top-center'})
+      return
     }
+
+
     const userId = user?.user?.id;
     if (!userId) return;
     await supabase.from("profiles").insert([
@@ -35,11 +41,12 @@ export const handleSignUp = async ({
         name: user.user?.user_metadata?.name,
       },
     ] as any);
+    toast.success("Successfully SingUp", {position : 'top-center'})
     navigateForm();
     reset();
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.log("catch Error", error);
+      console.log("catch Error", error.message);
     }
   }
 };

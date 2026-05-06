@@ -55,17 +55,14 @@ const TitleModal = ({
                 setShowModal(false);
                 setTitle("");
               }}
-              className="w-30 h-9 px-3.5 py-1 flex items-center justify-center  text-md rounded text-white 
-                   cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono   "
+              className="  w-30  h-10  mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer  text-black font-semibold px-5 py-2 rounded-lg"
             >
               Cancel
             </Button>
 
             <Button
               type="submit"
-              className="w-30 h-9 py-1.5 px-3.5 py-1  text-md rounded text-white 
-               cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono 
-                flex items-center justify-center"
+               className="w-30  h-10 mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer  text-black font-semibold px-5 py-2 rounded-lg"
             >
               {loading ? <Spinner className="w-5 h-5" /> : "Create"}
             </Button>

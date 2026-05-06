@@ -1,9 +1,8 @@
-import loading from "@/app/loading";
 import { handleSignUp } from "@/lib/helper/signUpHandler";
-import { useRouter } from "next/navigation";
 import React, { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Spinner } from "../ui/spinner";
+import { toast } from "sonner";
 
 const SignUpForms = ({ inputStyling, navigateForm }: any) => {
   const {
@@ -22,7 +21,8 @@ const SignUpForms = ({ inputStyling, navigateForm }: any) => {
     const name = data?.name;
     const email = data?.email;
     const password = data?.password;
-    await handleSignUp({ name, email, password, reset, navigateForm });
+    await handleSignUp({ name, email, password, reset, navigateForm , toast});
+
     setLoading(false);
   };
 

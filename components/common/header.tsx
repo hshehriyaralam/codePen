@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Spinner } from "../ui/spinner";
 import { SignOut } from "@/hooks/signOutHandler";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Header = ({ handleSaveProject, saveLoading, heading, isIdMatch}: any) => {
   const [loading,setLoading]  = useState(false)
@@ -15,36 +16,42 @@ const Header = ({ handleSaveProject, saveLoading, heading, isIdMatch}: any) => {
 
   return (
     <div
-      className="flex  flex-col gap-4 
+      className="flex  flex-col gap-4 my-2
          lg:gap-0  lg:flex-row  lg:items-center lg:justify-between  p-2  "
     >
       <Link href={'/'}
-       className="mx-3 my-3">
-        <h1 className="text-4xl  font-quicksand font-bold  text-white    font-mono ">
+         className="  ">
+       <Button  className="mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer 
+          text-black font-semibold px-5  rounded-lg">
+        Go Back
+       </Button>
+      </Link>
+
+       <h1 className="text-3xl  font-quicksand font-bold  text-white  text-center   font-mono ">
           {heading}
         </h1>
-      </Link>
       <div className="flex items-center justify-center gap-2 ">
         {isIdMatch && (
-          <button
+          <Button
           disabled={saveLoading}
           onClick={handleSaveProject}
-          className="w-38 h-9 flex items-center justify-center px-3.5 py-1  text-md rounded-xl text-white 
-          cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono "
+          className="mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer 
+          text-black font-semibold px-5  rounded-lg h-8 w-35 flex items-center justify-center"
         >
-          {saveLoading ? <Spinner  className="w-6 h-6" /> : 'Save Project'}
-        </button>
+          
+          {saveLoading ? <Spinner  className="w-6 h-6" /> : 'Save Project'  }
+        </Button>
           )
         }
     
-        <button
+        <Button
           disabled={loading}
           onClick={handleSignOut}
-          className="w-24 h-9 px-3.5 py-1 flex items-center justify-center  text-md rounded-xl text-white 
-          cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono  "
+          className="mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer 
+          text-black font-semibold px-5  rounded-lg h-8 w-26 "
         >
           {loading ? <Spinner  className="w-5 h-5" /> : 'SignOut'}
-        </button>
+        </Button>
       </div>
     </div>
   );

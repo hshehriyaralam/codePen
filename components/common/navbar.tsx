@@ -17,26 +17,28 @@ const Navbar = ({ response, setResponse }: any) => {
   ];
 
   return (
-    <div className="p-1">
-      <div className="w-[264px] bg-black   mx-5  cursor-pointer  rounded">
-        <div className="flex itmes-center  ">
-          {links?.map((link: any) => {
-            const isActive = response == link.text;
-            return (
-              <div
-                onClick={() => setResponse(link.text)}
-                key={link.id}
-                className={` text-white font-semibold font-mono 
-             p-2  curosor-pointer hover:border-b
-             hover:bg-[#0f111e]/40  text-xl
-             ${isActive ? "bg-[#0f111e]/70 border-b  " : ""}`}>
-                <h2 className="  curosor-pointer">{link.text}</h2>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+ <div className="flex justify-center mt-6">
+  <div className="flex bg-black  p-1 rounded-xl border border-gray-500">
+    {links.map((link: any) => {
+      const isActive = response === link.text;
+
+      return (
+        <button
+          key={link.id}
+          onClick={() => setResponse(link.text)}
+          className={`px-5 py-2 rounded-lg text-sm  cursor-pointer  font-semibold transition-all
+          ${
+            isActive
+              ? "bg-teal-500 text-black shadow-md"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          {link.text}
+        </button>
+      );
+    })}
+  </div>
+</div> 
   );
 };
 

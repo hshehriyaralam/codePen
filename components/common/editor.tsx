@@ -11,24 +11,24 @@ const EditorComp = ({ editors }: any) => {
     "bg-[#1e1e1e] border border-gray-700 rounded-md  shadow-sm py-4  min-w-[440px]";
   const [isMobile, setIsMobile] = useState(false);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if(window.innerWidth <  768){
-  //       setIsMobile(true)
-  //     }
-  //   };
-  //   handleResize()
-  //   window.addEventListener("resize", handleResize)
-  //   return () => window.removeEventListener("resize", handleResize)
-  // },[])
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true);
+      }
+      console.log("isMobile", isMobile);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
       <ResizablePanelGroup
         orientation="horizontal"
         onLayoutChange={(size: any) => setLayout(size)}
-        className="grid lg:grid-cols-3 grid-colos-1   lg:px-4  px-2  
-      w-full   overflow-auto sidebar  mb-4"
+        className="grid lg:grid-cols-3 grid-colos-1   lg:px-4  px-2     w-full   overflow-auto sidebar  mb-4"
       >
         {editors?.map(
           (
@@ -69,7 +69,6 @@ const EditorComp = ({ editors }: any) => {
                     value={value}
                     theme="vs-dark"
                     onChange={(value) => setter(value)}
-                    className={`${!isMin && "hidden"}`}
                   />
                 </div>
               </ResizablePanel>

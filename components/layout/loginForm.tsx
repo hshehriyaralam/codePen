@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Spinner } from "../ui/spinner";
+import { toast } from "sonner";
 
 const LoginForms = ({ inputStyling, navigateForm }: any) => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ const LoginForms = ({ inputStyling, navigateForm }: any) => {
       setLoading(true);
       const email = data?.email;
       const password = data?.password;
-      await handleLogin({ email, password, reset, router });
+      await handleLogin({ email, password, reset, router,toast });
     } catch (error) {
       console.log("Invalid Email and password");
     } finally {

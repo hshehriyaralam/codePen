@@ -1,72 +1,68 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useState } from "react";
-// import { Spinner } from "../ui/spinner";
+import React, { useState } from "react";
+import { Spinner } from "../ui/spinner";
 import TitleModal from "./titleModal";
 import { createProject } from "@/app/actions/create.project";
-// import { SignOut } from "@/hooks/signOutHandler";
+import { SignOut } from "@/hooks/signOutHandler";
 import { Button } from "../ui/button";
-import Link from "next/link";
 
 const HomeHeader = () => {
+  ``;
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState<any>("");
   const [isPublic, setIsPublic] = useState(false);
   const router = useRouter();
-  // const handleSignOut = async () => {
-  //    await SignOut({setLoading, router})
-  // };
+  const handleSignOut = async () => {
+    await SignOut({ setLoading, router });
+  };
+
   const handleCreateProject = async (e: any) => {
-      e.preventDefault();
-      try {
-        setLoading(true);
-        const res = await createProject({ title, isPublic });
-        if (res?.success) {
-          router.push(`/project/${res?.projectId}`);
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.log("Create Project Error", error);
-        }
-      } finally {
-        setLoading(false);
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await createProject({ title, isPublic });
+      if (res?.success) {
+        router.push(`/project/${res?.projectId}`);
       }
-    };
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log("Create Project Error", error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
-      <div
-        className="flex  flex-col gap-4 
-         lg:gap-0  lg:flex-row  lg:items-center lg:justify-between  p-2  "
-      >
-        <Link href={'/'}
-        className="mx-3">
-          <h1 className="text-4xl  font-quicksand font-bold  text-teal-600     font-mono ">
-            CodeJS
-          </h1>
-          <p className="text-white font-mono  text-sm">
-            {" "}
-            Live Preview for HTML, CSS and JavaScript
+      <div className="flex flex-col lg:flex-row items-center justify-between py-6 px-4 max-w-7xl mx-auto">
+        <div>
+          <h1 className="text-3xl font-bold text-teal-400">CodeJS</h1>
+          <p className="text-gray-300 text-sm mt-1">
+            Build & Share HTML, CSS & JS Projects
           </p>
-        </Link>
-        <div className="flex items-center justify-center gap-2 ">
-          <Button
-            onClick={() => setShowModal(true)}
-            className=" h-10  text-md  text-white 
-          cursor-pointer border border-gray-700   bg-[#0f2023] font-bold     font-mono  "
-          >
-            Create Project
-          </Button>
-          {/* <Button
-            disabled={loading}
-            onClick={handleSignOut}
-            className="w-24 h-10 px-3.5 py-1 flex items-center justify-center  text-md  text-white 
-         cursor-pointer border border-gray-700  bg-[#0f2023]  font-bold     font-mono   "
-          >
-            {loading ? <Spinner className="w-5 h-5  text-gray-300 " /> : "SignOut"}
-          </Button> */}
         </div>
+
+        <div  className="flex items-center justify-center gap-2"> 
+        <Button
+          onClick={() => setShowModal(true)}
+          className="mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer  text-black font-semibold px-5 py-2 rounded-lg"
+          >
+          + New Project
+        </Button>
+
+        <Button
+          disabled={loading}
+          onClick={handleSignOut}
+          className="mt-4 lg:mt-0 bg-teal-500 hover:bg-teal-400  cursor-pointer 
+          text-black font-semibold px-5  rounded-lg h-8  w-26"
+          >
+            
+          {loading ? <Spinner className="w-5 h-5" /> :  "SignOut "}
+        </Button>
+          </div>
       </div>
 
       {showModal && (

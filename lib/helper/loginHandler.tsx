@@ -5,7 +5,9 @@ export const handleLogin = async ({
   email,
   password,
   reset,
-  router
+  router,
+  toast,
+
 }: LoginProp) => {
   const supabase = getSupabaseBrowserClient();
   try {
@@ -13,12 +15,19 @@ export const handleLogin = async ({
        email : email,
         password : password,
       })
+
+      if(loginError?.message === "Invalid login credentials"){
+        toast.error("Email Or Password wasn't correct!", {position  : "top-center"})
+        return
+      }
+
     if (loginError) {
        console.log("error", loginError.message)
        throw new Error
     }
+    
 
-   
+    toast.success("Successfully Login", {position  : "top-center"})
     router.replace('/')
     router.refresh()
     reset();

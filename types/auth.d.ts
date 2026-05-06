@@ -4,13 +4,15 @@ export type SignUpProp = {
     password : string,
     reset : any,
     navigateForm : any,
+    toast : any
 }
 
 export type LoginProp = {
     email : string,
     password : string,
     reset : any,
-    router : any,
+    router? : any,
+    toast? : any
 }
 
 
